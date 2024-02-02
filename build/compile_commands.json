@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/zyd/wksp/test/CnS/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/example.dir/tcp-client.cpp.o -c /home/zyd/wksp/test/CnS/tcp-client.cpp",
+  "file": "/home/zyd/wksp/test/CnS/tcp-client.cpp",
+  "output": "CMakeFiles/example.dir/tcp-client.cpp.o"
+}
+]
