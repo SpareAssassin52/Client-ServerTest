@@ -1,0 +1,3 @@
+/home/zyd/wksp/test/CnS/libs/build/CMakeFiles/libs.dir
+/home/zyd/wksp/test/CnS/libs/build/CMakeFiles/edit_cache.dir
+/home/zyd/wksp/test/CnS/libs/build/CMakeFiles/rebuild_cache.dir

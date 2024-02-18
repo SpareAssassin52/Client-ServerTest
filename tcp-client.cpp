@@ -1,15 +1,13 @@
-
 #include"include/common.h"
 
-void err_n_die(const char *fmt, ...);
 
 
 int main(int argc, char **argv){
     int     sockfd, n;
     int     sendbytes;
     struct  sockaddr_in  servaddr;
-    char    sendline[MAXLINE];
-    char    recvline[MAXLINE];
+    char    sendline[BUFSIZE];
+    char    recvline[BUFSIZE];
 
     if (argc != 2)  //usage check
         err_n_die("usage: %s <server address>", argv[0]);
@@ -37,9 +35,9 @@ int main(int argc, char **argv){
     if(write(sockfd, sendline, strlen(sendline)) != strlen(sendline))   //write the formatted data into the socket file descriptor I created at the beginning.
         err_n_die("write error");
 
-    while((n = read(sockfd, recvline, MAXLINE-1)) > 0){ //read received data from sockfd. socket is kind like a file.
+    while((n = read(sockfd, recvline, BUFSIZE-1)) > 0){ //read received data from sockfd. socket is kind like a file.
         printf("%s", recvline);
-        memset(recvline, 0, MAXLINE);   //make sure string is null terminated by using memset.
+        memset(recvline, 0, BUFSIZE);   //make sure string is null terminated by using memset.
     }
     if(n<0)
         err_n_die("read error");
@@ -48,55 +46,4 @@ int main(int argc, char **argv){
 
 
     return 0;
-}
-
-
-
-
-void err_n_die(const char *fmt, ...){
-    int errno_save;
-    va_list ap; //a way for C functions to accept a variable number of arguments.
-
-    //any system or library call can set errno, so we need to save it now.
-    errno_save = errno;
-
-    //print out the fmt+args to standard out.
-    va_start(ap, fmt);  //a macro defined in the stdarg header file in the C Programming languages.
-    vfprintf(stdout, fmt, ap);  //writes a formatted string to a specified output stream.
-    fprintf(stdout, "\n"); 
-    fflush(stdout); //causes the system to empty the buffer that is associated with the specified output stream, if possible.
-
-    //print out error message is errno was set.
-    if (errno_save != 0){
-        fprintf(stdout, "(errno = %d) : %s\n", errno_save, strerror(errno_save));
-        fprintf(stdout,"\n");
-        fflush(stdout);
-    }
-    va_end(ap); //performs cleanup for an ap object initialized by a call to va_start or va_copy.
-
-    //this is the .. and_die part. Terminate with an error.
-    exit(1);
-    return;
-}
-
-
-char *bin2hex(const unsigned char *input, size_t len){
-    char *result;
-    char *hexits = "013456789ABCDEF";
-
-    if(input == NULL || len <=0)
-        return NULL;
-    //(2 hexits+space)/chr + NULL
-    int resultlength = (len*3) + 1;
-
-    result = (char*)malloc(resultlength);
-    bzero(result, resultlength);
-
-    for (int i=0; i<len; i++){
-        result[i*3] = hexits[input[i] >> 4];
-        result[(i*3)+1] = hexits[input[i] & 0x0F];
-        result[(i*3)+2] = ' ';  //for readability 
-    }
-
-    return result;
 }
