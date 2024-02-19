@@ -1,0 +1,1 @@
+/usr/bin/g++ -g "CMakeFiles/tcpclient.dir/tcp-client.cpp.o" -o tcpclient   -L/home/zyd/wksp/test/CnS/libs/build  -Wl,-rpath,/home/zyd/wksp/test/CnS/libs/build -llibs 

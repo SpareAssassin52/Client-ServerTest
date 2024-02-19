@@ -29,7 +29,7 @@ void err_n_die(const char *fmt, ...){
 
 char *bin2hex(const unsigned char *input, size_t len){
     char *result;
-    char *hexits = "0123456789ABCDEF";
+    std::string hexits = "0123456789ABCDEF";
 
     if(input == NULL || len <=0)
         return NULL;
@@ -56,7 +56,9 @@ int check(int exp, const char *msg){
     return exp;
 }
 
-void handle_connection(int client_socket){
+void *handle_connection(void *p_client_socket){
+    int client_socket = *((int*) p_client_socket);
+    free(p_client_socket);
     char buffer[BUFSIZE];
     size_t bytes_read;
     int msgsize = 0;
@@ -65,11 +67,13 @@ void handle_connection(int client_socket){
     //read the client's message -- the name of the file to read
     while((bytes_read = read(client_socket, buffer+msgsize, sizeof(buffer)-msgsize-1)) > 0){
         msgsize += bytes_read;
+
         if(msgsize > BUFSIZE-1 || (buffer[msgsize-4]=='\r' && buffer[msgsize-3]=='\n' && buffer[msgsize-2]=='\r' && buffer[msgsize-1]=='\n'))
         break;  //buffer overflow or end of file.
+
     }
     check(bytes_read, "recv error");
-    buffer[msgsize-1] = 0;  //null terminate the message and remove the \n
+    buffer[msgsize-1] = 0, buffer[msgsize-2] = 0, buffer[msgsize-3] = 0, buffer[msgsize-4] = 0;  //null terminate the message and remove the \n
 
     printf("REQUEST: %s\n", buffer);
     fflush(stdout);
@@ -78,7 +82,7 @@ void handle_connection(int client_socket){
     if(realpath(buffer, actualpath) == NULL){   //realpath() can convert any relative path into absolute path which is stored into resolved.
         printf("ERROR(bad path): %s\n", buffer);
         close(client_socket);
-        return;
+        return NULL;
     }
 
     //read file contents and send its contents to client
@@ -86,9 +90,9 @@ void handle_connection(int client_socket){
     if(fp == NULL){
         printf("ERROR(open): %s\n", buffer);
         close(client_socket);
-        return; 
+        return NULL;  
     }
-
+    //sleep(1); //to demonstrate that thread is really helpful and can be relatively faster.
     //this is a fine example program, but rather insecure.
     //a real program should limit the client to certain files.
     while((bytes_read = fread(buffer, 1, BUFSIZE, fp)) > 0){
@@ -98,4 +102,6 @@ void handle_connection(int client_socket){
     close(client_socket);
     fclose(fp);
     printf("closing connection");
+
+    return NULL;
 }

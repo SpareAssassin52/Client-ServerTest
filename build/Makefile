@@ -117,24 +117,74 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named example
+# Target rules for targets named tcpclient
 
 # Build rule for target.
-example: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example
-.PHONY : example
+tcpclient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcpclient
+.PHONY : tcpclient
 
 # fast build rule for target.
-example/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/build
-.PHONY : example/fast
+tcpclient/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpclient.dir/build.make CMakeFiles/tcpclient.dir/build
+.PHONY : tcpclient/fast
+
+#=============================================================================
+# Target rules for targets named tcpserver
+
+# Build rule for target.
+tcpserver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcpserver
+.PHONY : tcpserver
+
+# fast build rule for target.
+tcpserver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpserver.dir/build.make CMakeFiles/tcpserver.dir/build
+.PHONY : tcpserver/fast
+
+#=============================================================================
+# Target rules for targets named tcpMultiserver
+
+# Build rule for target.
+tcpMultiserver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcpMultiserver
+.PHONY : tcpMultiserver
+
+# fast build rule for target.
+tcpMultiserver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/build
+.PHONY : tcpMultiserver/fast
+
+libs/common.o: libs/common.cpp.o
+.PHONY : libs/common.o
+
+# target to build an object file
+libs/common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/libs/common.cpp.o
+.PHONY : libs/common.cpp.o
+
+libs/common.i: libs/common.cpp.i
+.PHONY : libs/common.i
+
+# target to preprocess a source file
+libs/common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/libs/common.cpp.i
+.PHONY : libs/common.cpp.i
+
+libs/common.s: libs/common.cpp.s
+.PHONY : libs/common.s
+
+# target to generate assembly for a file
+libs/common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/libs/common.cpp.s
+.PHONY : libs/common.cpp.s
 
 tcp-client.o: tcp-client.cpp.o
 .PHONY : tcp-client.o
 
 # target to build an object file
 tcp-client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/tcp-client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpclient.dir/build.make CMakeFiles/tcpclient.dir/tcp-client.cpp.o
 .PHONY : tcp-client.cpp.o
 
 tcp-client.i: tcp-client.cpp.i
@@ -142,7 +192,7 @@ tcp-client.i: tcp-client.cpp.i
 
 # target to preprocess a source file
 tcp-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/tcp-client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpclient.dir/build.make CMakeFiles/tcpclient.dir/tcp-client.cpp.i
 .PHONY : tcp-client.cpp.i
 
 tcp-client.s: tcp-client.cpp.s
@@ -150,8 +200,56 @@ tcp-client.s: tcp-client.cpp.s
 
 # target to generate assembly for a file
 tcp-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/tcp-client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpclient.dir/build.make CMakeFiles/tcpclient.dir/tcp-client.cpp.s
 .PHONY : tcp-client.cpp.s
+
+tcp-server.o: tcp-server.cpp.o
+.PHONY : tcp-server.o
+
+# target to build an object file
+tcp-server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpserver.dir/build.make CMakeFiles/tcpserver.dir/tcp-server.cpp.o
+.PHONY : tcp-server.cpp.o
+
+tcp-server.i: tcp-server.cpp.i
+.PHONY : tcp-server.i
+
+# target to preprocess a source file
+tcp-server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpserver.dir/build.make CMakeFiles/tcpserver.dir/tcp-server.cpp.i
+.PHONY : tcp-server.cpp.i
+
+tcp-server.s: tcp-server.cpp.s
+.PHONY : tcp-server.s
+
+# target to generate assembly for a file
+tcp-server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpserver.dir/build.make CMakeFiles/tcpserver.dir/tcp-server.cpp.s
+.PHONY : tcp-server.cpp.s
+
+tcpMulti-server.o: tcpMulti-server.cpp.o
+.PHONY : tcpMulti-server.o
+
+# target to build an object file
+tcpMulti-server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.o
+.PHONY : tcpMulti-server.cpp.o
+
+tcpMulti-server.i: tcpMulti-server.cpp.i
+.PHONY : tcpMulti-server.i
+
+# target to preprocess a source file
+tcpMulti-server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.i
+.PHONY : tcpMulti-server.cpp.i
+
+tcpMulti-server.s: tcpMulti-server.cpp.s
+.PHONY : tcpMulti-server.s
+
+# target to generate assembly for a file
+tcpMulti-server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcpMultiserver.dir/build.make CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.s
+.PHONY : tcpMulti-server.cpp.s
 
 # Help Target
 help:
@@ -161,10 +259,21 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... example"
+	@echo "... tcpMultiserver"
+	@echo "... tcpclient"
+	@echo "... tcpserver"
+	@echo "... libs/common.o"
+	@echo "... libs/common.i"
+	@echo "... libs/common.s"
 	@echo "... tcp-client.o"
 	@echo "... tcp-client.i"
 	@echo "... tcp-client.s"
+	@echo "... tcp-server.o"
+	@echo "... tcp-server.i"
+	@echo "... tcp-server.s"
+	@echo "... tcpMulti-server.o"
+	@echo "... tcpMulti-server.i"
+	@echo "... tcpMulti-server.s"
 .PHONY : help
 
 

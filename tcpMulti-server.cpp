@@ -27,12 +27,16 @@ int main(int argc, char **argv){
         "accept failed");
         printf("Connected!\n");
 
-        inet_ntop(AF_INET, &client_addr, client_address, BUFSIZE);
+        inet_ntop(AF_INET, &client_addr, client_address, BUFSIZE);  //convert network address's format from network standard to presentation format.
         std::cout<<"Client's address is "<<client_address<<std::endl;
 
         //do what we do with connections.
-        handle_connection(client_socket);
-
+        //handle_connection(client_socket);     //pass handle_connection into pthread_create and its argument client_socket.
+        pthread_t t;    //thread identifiers to track thread
+        int *pclient = new int;
+        *pclient = client_socket;
+        pthread_create(&t, NULL, handle_connection, pclient); //use threads
+        //handle_connection(pclient); //not use threads
     }
     
 

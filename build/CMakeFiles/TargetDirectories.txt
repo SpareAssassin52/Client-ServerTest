@@ -1,3 +1,5 @@
-/home/zyd/wksp/test/CnS/build/CMakeFiles/example.dir
+/home/zyd/wksp/test/CnS/build/CMakeFiles/tcpclient.dir
+/home/zyd/wksp/test/CnS/build/CMakeFiles/tcpserver.dir
+/home/zyd/wksp/test/CnS/build/CMakeFiles/tcpMultiserver.dir
 /home/zyd/wksp/test/CnS/build/CMakeFiles/edit_cache.dir
 /home/zyd/wksp/test/CnS/build/CMakeFiles/rebuild_cache.dir

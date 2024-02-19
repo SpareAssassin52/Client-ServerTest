@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "example"
+			"path" : "tcpclient"
 		}
 	],
 	"backtrace" : 1,
@@ -10,7 +10,10 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_executable",
+			"target_link_directories",
+			"target_link_libraries",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -26,6 +29,24 @@
 				"file" : 0,
 				"line" : 5,
 				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
 			}
 		]
 	},
@@ -38,6 +59,13 @@
 					"fragment" : "-g"
 				}
 			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/home/zyd/wksp/test/CnS/include"
+				}
+			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
@@ -45,7 +73,7 @@
 			]
 		}
 	],
-	"id" : "example::@6890427a1f51a3e7e1df",
+	"id" : "tcpclient::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -57,12 +85,26 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/zyd/wksp/test/CnS/libs/build",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/zyd/wksp/test/CnS/libs/build",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-llibs",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "example",
-	"nameOnDisk" : "example",
+	"name" : "tcpclient",
+	"nameOnDisk" : "tcpclient",
 	"paths" : 
 	{
 		"build" : ".",

@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "example",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -38,9 +42,23 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "example::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-example-Debug-bcea847ec2273fd55f46.json",
-					"name" : "example",
+					"id" : "tcpMultiserver::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tcpMultiserver-Debug-f2233f116091eb9e1ad1.json",
+					"name" : "tcpMultiserver",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tcpclient::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tcpclient-Debug-31ac4392a45860c3748e.json",
+					"name" : "tcpclient",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tcpserver::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tcpserver-Debug-4d7f06a6f1ac788c59e5.json",
+					"name" : "tcpserver",
 					"projectIndex" : 0
 				}
 			]

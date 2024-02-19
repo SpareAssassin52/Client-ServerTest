@@ -1,0 +1,1 @@
+/usr/bin/g++ -g "CMakeFiles/tcpserver.dir/tcp-server.cpp.o" -o tcpserver   -L/home/zyd/wksp/test/CnS/libs/build  -Wl,-rpath,/home/zyd/wksp/test/CnS/libs/build -llibs 

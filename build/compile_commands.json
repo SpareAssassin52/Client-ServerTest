@@ -1,8 +1,26 @@
 [
 {
   "directory": "/home/zyd/wksp/test/CnS/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/example.dir/tcp-client.cpp.o -c /home/zyd/wksp/test/CnS/tcp-client.cpp",
+  "command": "/usr/bin/g++  -I/home/zyd/wksp/test/CnS/include -g -o CMakeFiles/tcpclient.dir/tcp-client.cpp.o -c /home/zyd/wksp/test/CnS/tcp-client.cpp",
   "file": "/home/zyd/wksp/test/CnS/tcp-client.cpp",
-  "output": "CMakeFiles/example.dir/tcp-client.cpp.o"
+  "output": "CMakeFiles/tcpclient.dir/tcp-client.cpp.o"
+},
+{
+  "directory": "/home/zyd/wksp/test/CnS/build",
+  "command": "/usr/bin/g++  -I/home/zyd/wksp/test/CnS/include -g -o CMakeFiles/tcpserver.dir/tcp-server.cpp.o -c /home/zyd/wksp/test/CnS/tcp-server.cpp",
+  "file": "/home/zyd/wksp/test/CnS/tcp-server.cpp",
+  "output": "CMakeFiles/tcpserver.dir/tcp-server.cpp.o"
+},
+{
+  "directory": "/home/zyd/wksp/test/CnS/build",
+  "command": "/usr/bin/g++  -I/home/zyd/wksp/test/CnS/include -g -o CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.o -c /home/zyd/wksp/test/CnS/tcpMulti-server.cpp",
+  "file": "/home/zyd/wksp/test/CnS/tcpMulti-server.cpp",
+  "output": "CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.o"
+},
+{
+  "directory": "/home/zyd/wksp/test/CnS/build",
+  "command": "/usr/bin/g++  -I/home/zyd/wksp/test/CnS/include -g -o CMakeFiles/tcpMultiserver.dir/libs/common.cpp.o -c /home/zyd/wksp/test/CnS/libs/common.cpp",
+  "file": "/home/zyd/wksp/test/CnS/libs/common.cpp",
+  "output": "CMakeFiles/tcpMultiserver.dir/libs/common.cpp.o"
 }
 ]
