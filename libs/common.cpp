@@ -1,4 +1,5 @@
 #include "../include/common.h"
+std::queue<int*> qclient_socket;
 
 void err_n_die(const char *fmt, ...){
     int errno_save;
@@ -59,16 +60,15 @@ int check(int exp, const char *msg){
 void *handle_connection(void *p_client_socket){
     int client_socket = *((int*) p_client_socket);
     free(p_client_socket);
-    char buffer[BUFSIZE];
+    char buffer[BUFSIZE]; 
     size_t bytes_read;
     int msgsize = 0;
     char actualpath[PATH_MAX+1];
 
     //read the client's message -- the name of the file to read
-    while((bytes_read = read(client_socket, buffer+msgsize, sizeof(buffer)-msgsize-1)) > 0){
+    while((bytes_read = read(client_socket, buffer+msgsize, sizeof(buffer)+msgsize-1)) > 0){
         msgsize += bytes_read;
-
-        if(msgsize > BUFSIZE-1 || (buffer[msgsize-4]=='\r' && buffer[msgsize-3]=='\n' && buffer[msgsize-2]=='\r' && buffer[msgsize-1]=='\n'))
+        if(msgsize < 0||msgsize > BUFSIZE-1 || (buffer[msgsize-4]=='\r' && buffer[msgsize-3]=='\n' && buffer[msgsize-2]=='\r' && buffer[msgsize-1]=='\n'))  //msgsize < 0 because byte_read can be really huge that it overflowed, which makes it become negative.
         break;  //buffer overflow or end of file.
 
     }
@@ -101,7 +101,25 @@ void *handle_connection(void *p_client_socket){
     }
     close(client_socket);
     fclose(fp);
-    printf("closing connection");
+    printf("closing connection\n");
+    fflush(stdout);
+
+    return NULL;
+}
+
+
+void * thread_function(void* arg){
+    while(true){    //thread will keeping checking the queue, if we have connection from client then run handle_connection.
+        int *pclient= NULL;
+        if(!qclient_socket.empty()){
+            pclient = qclient_socket.front();
+            qclient_socket.pop();
+            if(pclient!=NULL){
+                //we have a new connection!
+                handle_connection(&pclient);
+            }
+        }
+    }
 
     return NULL;
 }

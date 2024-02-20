@@ -22,12 +22,13 @@
 #define BUFSIZE 4096    //size of the buffer
 #define SOCKETERROR (-1)
 #define SERVER_BACKLOG 100  //queue client connection requests. allowing waiting connections depending on the number of backlog
-#define THREAD_POOL_SIZE 20
+#define THREAD_POOL_SIZE 2
 //#define SA struct sockaddr  //to type less
 
-void err_n_die(const char *fmt, ...);
+void err_n_die(const char *fmt, ...);   //print out error then shut down program.
 char *bin2hex(const unsigned char *input, size_t len);
 void *handle_connection(void *client_socket);    //to call the function in a way that pthread_create() wants.
-int check(int exp, const char *msg);
+int check(int exp, const char *msg);    //print out errors.
 
+extern std::queue<int*> qclient_socket; //queue for threads to process sockets.
 void *thread_function(void *arg);   
