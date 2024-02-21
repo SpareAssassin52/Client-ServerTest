@@ -17,6 +17,7 @@
 #include<pthread.h> //to creat threads
 #include<queue>
 #include<iostream>
+#include<mutex> //a synchronization primitive that ensures only one thread can access a critical section of code at a time.
 
 #define SERVER_PORT 8989  //serverports; standard HTTP prot 80
 #define BUFSIZE 4096    //size of the buffer
@@ -32,3 +33,4 @@ int check(int exp, const char *msg);    //print out errors.
 
 extern std::queue<int*> qclient_socket; //queue for threads to process sockets.
 void *thread_function(void *arg);   
+extern std::mutex mtx;  //making it global so that it can lock up the queue in tcpMultiserver.cpp

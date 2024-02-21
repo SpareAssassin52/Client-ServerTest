@@ -40,10 +40,11 @@ int main(int argc, char **argv){
         //do what we do with connections.
         //handle_connection(client_socket);     //pass handle_connection into pthread_create and its argument client_socket.
         //pthread_t t;    //thread identifiers to track thread
+        mtx.lock(); //making sure that only one thread can access the queue at the same time, to prevent potentially data loss.
         int *pclient = new int;
         *pclient = client_socket;
         qclient_socket.push(pclient);   //put the connection elsewhere so that thread can find it.
-
+        mtx.unlock();
         //pthread_create(&t, NULL, handle_connection, pclient); //use threads
         //handle_connection(pclient); //not use threads
     } 

@@ -1,6 +1,6 @@
 #include "../include/common.h"
 std::queue<int*> qclient_socket;
-
+std::mutex mtx;
 void err_n_die(const char *fmt, ...){
     int errno_save;
     va_list ap; //a way for C functions to accept a variable number of arguments.
@@ -110,15 +110,17 @@ void *handle_connection(void *p_client_socket){
 
 void * thread_function(void* arg){
     while(true){    //thread will keeping checking the queue, if we have connection from client then run handle_connection.
+        mtx.lock();//using mutex to lock the global queue, making it can only be accessed by one thread.
         int *pclient= NULL;
         if(!qclient_socket.empty()){
             pclient = qclient_socket.front();
             qclient_socket.pop();
             if(pclient!=NULL){
                 //we have a new connection!
-                handle_connection(&pclient);
+                handle_connection(pclient);
             }
         }
+        mtx.unlock();
     }
 
     return NULL;
