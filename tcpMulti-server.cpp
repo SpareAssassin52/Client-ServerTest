@@ -5,12 +5,16 @@ int main(int argc, char **argv){
     struct sockaddr_in server_addr, client_addr;
     
 
-    pthread_t thread_pool[THREAD_POOL_SIZE];    //use a thread pool. 
+    /*pthread_t thread_pool[THREAD_POOL_SIZE];  //use a thread pool. C*/
+    std::vector<std::thread> thread_pool;
+    //                                                std::thread thread_pool[THREAD_POOL_SIZE];  //C++
     //first off create a bunch of threads to handle future connections.
     for(int i=0; i < THREAD_POOL_SIZE; i++){
-        pthread_create(&thread_pool[i], NULL, thread_function, NULL);
+        /*pthread_create(&thread_pool[i], NULL, thread_function, NULL);   //C  */
+        //thread_pool[i] = std::thread(thread_functioncpp,nullptr);    //C++
+        thread_pool.emplace_back(std::thread(thread_functioncpp));
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////thread_pool.join();??
 
     check((server_socket = socket(AF_INET, SOCK_STREAM , 0)), "Failed to create socket");
 
@@ -40,13 +44,17 @@ int main(int argc, char **argv){
         //do what we do with connections.
         //handle_connection(client_socket);     //pass handle_connection into pthread_create and its argument client_socket.
         //pthread_t t;    //thread identifiers to track thread
-        mtx.lock(); //making sure that only one thread can access the queue at the same time, to prevent potentially data loss.
-        int *pclient = new int;
-        *pclient = client_socket;
+        {       
+        //mtx.lock(); //making sure that only one thread can access the queue at the same time, to prevent potentially data loss.
+              //using {} to automatically lock because of scope-locking in unique_lock
+        int *pclient = new int(client_socket);
+        //*pclient = client_socket;     //simplify the syntax
         qclient_socket.push(pclient);   //put the connection elsewhere so that thread can find it.
-        mtx.unlock();
+        cv.notify_one();              //to wake up one of the waiting threads.
+        //mtx.unlock();
         //pthread_create(&t, NULL, handle_connection, pclient); //use threads
         //handle_connection(pclient); //not use threads
+        }
     } 
     
 
