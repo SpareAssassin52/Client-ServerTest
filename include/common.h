@@ -40,3 +40,6 @@ void thread_functioncpp();     //C++
 extern std::mutex mtx;  //making it global so that it can lock up the queue in tcpMultiserver.cpp   C++
 //std::unique_lock<std::mutex> lk(mtx);     //unique_lock can't be a global varible.
 extern std::condition_variable cv;//global condition variable. C++
+
+int setup_server(short port, int backlog);  
+int accept_new_connection(int server_socket);
