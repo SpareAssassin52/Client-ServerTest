@@ -25,8 +25,8 @@ int main(int argc, char **argv){
         err_n_die("inet_pton error for %s ", argv[1]);
 
 // to track down the time client spend to recieve target file.
+reconnect:
     long before = clock();
-    
     if(connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) //try to connect the address
         err_n_die("connect failed");
 

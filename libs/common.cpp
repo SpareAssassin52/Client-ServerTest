@@ -25,7 +25,7 @@ void err_n_die(const char *fmt, ...){
     va_end(ap); //performs cleanup for an ap object initialized by a call to va_start or va_copy.
 
     //this is the .. and_die part. Terminate with an error.
-    exit(1);
+    //exit(1);
     return;
 }
 
@@ -57,6 +57,9 @@ int setup_server(short port, int backlog){
 
     check((server_socket = socket(AF_INET, SOCK_STREAM , 0)), "Failed to create socket");
 
+    //set the socket into non-blocking mode using file control(fcntl).
+    fcntl(server_socket, F_SETFL, fcntl(server_socket, F_GETFL) | O_NONBLOCK);
+
     //initialize the address struct
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = INADDR_ANY;
@@ -65,7 +68,8 @@ int setup_server(short port, int backlog){
     check(bind(server_socket, (sockaddr*)&server_addr, sizeof(server_addr)), "Bind Failed!");
 
     check(listen(server_socket, backlog), "Listen Failed");
-
+    printf("waiting for connection...\n");
+    //wait for, and eventually accept an incoming connection.
 
     return server_socket;
 }
@@ -76,8 +80,6 @@ int accept_new_connection(int server_socket){
     int addr_size;
     char client_address[BUFSIZE+1];
 
-    printf("waiting for connection...\n");
-    //wait for, and eventually accept an incoming connection.
     addr_size=sizeof(struct sockaddr_in);
     check(client_socket = 
             accept(server_socket, (sockaddr*)&client_addr, (socklen_t*) &addr_size),
@@ -87,7 +89,7 @@ int accept_new_connection(int server_socket){
 
     inet_ntop(AF_INET, &client_addr, client_address, BUFSIZE);  //convert network address's format from network standard to presentation format.
     std::cout<<"Client's address is "<<client_address<<std::endl;
-    
+
     return client_socket;
 }
 
@@ -99,9 +101,9 @@ int check(int exp, const char *msg){
     return exp;
 }
 
-void *handle_connection(void *p_client_socket){
-    int client_socket = *((int*) p_client_socket);
-    free(p_client_socket);
+void *handle_connection(int client_socket){
+    //int client_socket = *((int*) p_client_socket);
+    //free(p_client_socket);
     char buffer[BUFSIZE]; 
     size_t bytes_read;
     int msgsize = 0;
@@ -150,7 +152,7 @@ void *handle_connection(void *p_client_socket){
 }
 
 
-void * thread_function(void* arg){      //C
+/*void * thread_function(void* arg){      //C
     while(true){    //thread will keeping checking the queue, if we have connection from client then run handle_connection.
         mtx.lock();//using mutex to lock the global queue, making it can only be accessed by one thread.
         int *pclient= NULL;
@@ -166,7 +168,7 @@ void * thread_function(void* arg){      //C
     }
 
     return NULL;
-}
+}*/
 
 void thread_functioncpp(){ //same as thread_function, its return type is void in order to let std::thread to create thread.
     while(true){    //thread will keeping checking the queue, if we have connection from client then run handle_connection.
@@ -178,7 +180,7 @@ void thread_functioncpp(){ //same as thread_function, its return type is void in
         qclient_socket.pop();
         if(pclient!=NULL){
             //we have a new connection!
-            handle_connection(pclient);
+            handle_connection(*pclient);
         }
         //mtx.unlock();
     }

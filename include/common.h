@@ -31,7 +31,8 @@
 
 void err_n_die(const char *fmt, ...);   //print out error then shut down program.
 char *bin2hex(const unsigned char *input, size_t len);
-void *handle_connection(void *client_socket);    //to call the function in a way that pthread_create() wants.
+//void *handle_connection(void *p_client_socket);    //to call the function in a way that pthread_create() wants.
+void *handle_connection(int client_socket); 
 int check(int exp, const char *msg);    //print out errors.
 
 extern std::queue<int*> qclient_socket; //queue for threads to process sockets.

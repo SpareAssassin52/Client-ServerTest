@@ -1,41 +1,45 @@
 #include "include/common.h"
 
 int main(int argc, char **argv){
+
+    //std::vector<std::thread> thread_pool;
     
-    /*pthread_t thread_pool[THREAD_POOL_SIZE];  //use a thread pool. C*/
-    std::vector<std::thread> thread_pool;
-    //                                                std::thread thread_pool[THREAD_POOL_SIZE];  //C++
-    //first off create a bunch of threads to handle future connections.
-    for(int i=0; i < THREAD_POOL_SIZE; i++){
-        /*pthread_create(&thread_pool[i], NULL, thread_function, NULL);   //C  */
-        //thread_pool[i] = std::thread(thread_functioncpp,nullptr);    //C++
+    /*for(int i=0; i < THREAD_POOL_SIZE; i++){
         thread_pool.emplace_back(std::thread(thread_functioncpp));
-        //thread_pool[i].join();      //join() means the main() thread will wait til the thread_pool[i] finishes.
     }
+    */
 
     int server_socket = setup_server(SERVER_PORT, SERVER_BACKLOG);
 
+    fd_set current_sockets, ready_sockets;      //2 sets of file descriptor.
+    
+    //initialize my current set
+    FD_ZERO(&current_sockets); FD_ZERO(&ready_sockets);
+    FD_SET(server_socket,&current_sockets);     //add server_socket to the current FD_set.
+
+
     while (true)
     {   
-        int client_socket = accept_new_connection(server_socket);
-
-        //do what we do with connections.
-        //handle_connection(client_socket);     //pass handle_connection into pthread_create and its argument client_socket.
-        //pthread_t t;    //thread identifiers to track thread
-        {       
-        std::unique_lock<std::mutex> lk(mtx);
-        //mtx.lock(); //making sure that only one thread can access the queue at the same time, to prevent potentially data loss.
-              //using {} to automatically lock because of scope-locking in unique_lock
-        int *pclient = new int(client_socket);
-        //*pclient = client_socket;     //simplify the syntax
-        qclient_socket.push(pclient);   //put the connection elsewhere so that thread can find it.
-        cv.notify_one();                //to wake up one of the waiting threads.
-        //mtx.unlock();
-        //pthread_create(&t, NULL, handle_connection, pclient); //use threads
-        //handle_connection(pclient); //not use threads
+        ready_sockets = current_sockets;        //select is destructive, operate sets that need to operate now.
+        if(select(FD_SETSIZE, &ready_sockets, NULL, NULL, NULL) < 0){
+            perror("select error");
+            exit(EXIT_FAILURE);
         }
+
+        for(int i=0; i < FD_SETSIZE; i++){
+            if(FD_ISSET(i, &ready_sockets)){    //FD_ISSET() checks whether I is in the FD_set of ready_sockets.
+                if (i == server_socket){        //means new connection selected by SELECT and it is readable.
+                    int client_socket = accept_new_connection(server_socket);
+                    FD_SET(client_socket, &current_sockets);        //add it into current_sockets for the next round SELECT.
+                }
+                else{       //i == client_socket; means that SELECT told us client_socket is readable and needs further process.
+                    
+                    handle_connection(i);
+                    FD_CLR(i, &current_sockets);        //once client's request is over, just move its FD out of the current FD_SET.
+                }
+            }
+        }    
     } 
     
-
     return 0;
 }
