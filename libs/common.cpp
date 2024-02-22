@@ -1,7 +1,6 @@
 #include "../include/common.h"
 std::queue<int*> qclient_socket;
 std::mutex mtx;
-std::unique_lock<std::mutex> lk(mtx);
 std::condition_variable cv;
 
 void err_n_die(const char *fmt, ...){
@@ -129,9 +128,10 @@ void * thread_function(void* arg){      //C
     return NULL;
 }
 
-void thread_functioncpp(void* arg){ //same as thread_function, its return type is void in order to let std::thread to create thread.
+void thread_functioncpp(){ //same as thread_function, its return type is void in order to let std::thread to create thread.
     while(true){    //thread will keeping checking the queue, if we have connection from client then run handle_connection.
-        mtx.lock();//using mutex to lock the global queue, making it can only be accessed by one thread.
+        //mtx.lock();//using mutex to lock the global queue, making it can only be accessed by one thread.
+        std::unique_lock<std::mutex> lk(mtx);
         cv.wait(lk, [] {return !qclient_socket.empty(); });     //in order to use a lambda function, I need to use unique_lock type. 
         int *pclient= NULL;                                     //because of the lambda expression in the .wait(), there is no need to add additional
         pclient = qclient_socket.front();                       //if() expression to check the queue is empty or not.
@@ -140,7 +140,7 @@ void thread_functioncpp(void* arg){ //same as thread_function, its return type i
             //we have a new connection!
             handle_connection(pclient);
         }
-        mtx.unlock();
+        //mtx.unlock();
     }
 
     return;

@@ -13,8 +13,8 @@ int main(int argc, char **argv){
         /*pthread_create(&thread_pool[i], NULL, thread_function, NULL);   //C  */
         //thread_pool[i] = std::thread(thread_functioncpp,nullptr);    //C++
         thread_pool.emplace_back(std::thread(thread_functioncpp));
+        //thread_pool[i].join();      //join() means the main() thread will wait til the thread_pool[i] finishes.
     }
-    /////////////////////////////////////////////////////////////////////////////////////////thread_pool.join();??
 
     check((server_socket = socket(AF_INET, SOCK_STREAM , 0)), "Failed to create socket");
 
@@ -45,12 +45,13 @@ int main(int argc, char **argv){
         //handle_connection(client_socket);     //pass handle_connection into pthread_create and its argument client_socket.
         //pthread_t t;    //thread identifiers to track thread
         {       
+        std::unique_lock<std::mutex> lk(mtx);
         //mtx.lock(); //making sure that only one thread can access the queue at the same time, to prevent potentially data loss.
               //using {} to automatically lock because of scope-locking in unique_lock
         int *pclient = new int(client_socket);
         //*pclient = client_socket;     //simplify the syntax
         qclient_socket.push(pclient);   //put the connection elsewhere so that thread can find it.
-        cv.notify_one();              //to wake up one of the waiting threads.
+        cv.notify_one();                //to wake up one of the waiting threads.
         //mtx.unlock();
         //pthread_create(&t, NULL, handle_connection, pclient); //use threads
         //handle_connection(pclient); //not use threads

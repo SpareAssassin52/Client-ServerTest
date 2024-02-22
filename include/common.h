@@ -36,7 +36,7 @@ int check(int exp, const char *msg);    //print out errors.
 
 extern std::queue<int*> qclient_socket; //queue for threads to process sockets.
 void *thread_function(void *arg);       //C
-void thread_functioncpp(void *arg);     //C++
+void thread_functioncpp();     //C++
 extern std::mutex mtx;  //making it global so that it can lock up the queue in tcpMultiserver.cpp   C++
 //std::unique_lock<std::mutex> lk(mtx);     //unique_lock can't be a global varible.
 extern std::condition_variable cv;//global condition variable. C++
