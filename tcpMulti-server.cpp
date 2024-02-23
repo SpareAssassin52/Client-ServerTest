@@ -33,7 +33,7 @@ int main(int argc, char **argv){
                     FD_SET(client_socket, &current_sockets);        //add it into current_sockets for the next round SELECT.
                 }
                 else{       //i == client_socket; means that SELECT told us client_socket is readable and needs further process.
-                    
+                    //sleep(500);
                     handle_connection(i);
                     FD_CLR(i, &current_sockets);        //once client's request is over, just move its FD out of the current FD_SET.
                 }
