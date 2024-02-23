@@ -153,6 +153,270 @@ common.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/common.cpp.s
 .PHONY : common.cpp.s
 
+jsonrpc_client.o: jsonrpc_client.cpp.o
+.PHONY : jsonrpc_client.o
+
+# target to build an object file
+jsonrpc_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_client.cpp.o
+.PHONY : jsonrpc_client.cpp.o
+
+jsonrpc_client.i: jsonrpc_client.cpp.i
+.PHONY : jsonrpc_client.i
+
+# target to preprocess a source file
+jsonrpc_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_client.cpp.i
+.PHONY : jsonrpc_client.cpp.i
+
+jsonrpc_client.s: jsonrpc_client.cpp.s
+.PHONY : jsonrpc_client.s
+
+# target to generate assembly for a file
+jsonrpc_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_client.cpp.s
+.PHONY : jsonrpc_client.cpp.s
+
+jsonrpc_handler.o: jsonrpc_handler.cpp.o
+.PHONY : jsonrpc_handler.o
+
+# target to build an object file
+jsonrpc_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_handler.cpp.o
+.PHONY : jsonrpc_handler.cpp.o
+
+jsonrpc_handler.i: jsonrpc_handler.cpp.i
+.PHONY : jsonrpc_handler.i
+
+# target to preprocess a source file
+jsonrpc_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_handler.cpp.i
+.PHONY : jsonrpc_handler.cpp.i
+
+jsonrpc_handler.s: jsonrpc_handler.cpp.s
+.PHONY : jsonrpc_handler.s
+
+# target to generate assembly for a file
+jsonrpc_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_handler.cpp.s
+.PHONY : jsonrpc_handler.cpp.s
+
+jsonrpc_httpclient.o: jsonrpc_httpclient.cpp.o
+.PHONY : jsonrpc_httpclient.o
+
+# target to build an object file
+jsonrpc_httpclient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_httpclient.cpp.o
+.PHONY : jsonrpc_httpclient.cpp.o
+
+jsonrpc_httpclient.i: jsonrpc_httpclient.cpp.i
+.PHONY : jsonrpc_httpclient.i
+
+# target to preprocess a source file
+jsonrpc_httpclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_httpclient.cpp.i
+.PHONY : jsonrpc_httpclient.cpp.i
+
+jsonrpc_httpclient.s: jsonrpc_httpclient.cpp.s
+.PHONY : jsonrpc_httpclient.s
+
+# target to generate assembly for a file
+jsonrpc_httpclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_httpclient.cpp.s
+.PHONY : jsonrpc_httpclient.cpp.s
+
+jsonrpc_server.o: jsonrpc_server.cpp.o
+.PHONY : jsonrpc_server.o
+
+# target to build an object file
+jsonrpc_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_server.cpp.o
+.PHONY : jsonrpc_server.cpp.o
+
+jsonrpc_server.i: jsonrpc_server.cpp.i
+.PHONY : jsonrpc_server.i
+
+# target to preprocess a source file
+jsonrpc_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_server.cpp.i
+.PHONY : jsonrpc_server.cpp.i
+
+jsonrpc_server.s: jsonrpc_server.cpp.s
+.PHONY : jsonrpc_server.s
+
+# target to generate assembly for a file
+jsonrpc_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_server.cpp.s
+.PHONY : jsonrpc_server.cpp.s
+
+jsonrpc_tcpclient.o: jsonrpc_tcpclient.cpp.o
+.PHONY : jsonrpc_tcpclient.o
+
+# target to build an object file
+jsonrpc_tcpclient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpclient.cpp.o
+.PHONY : jsonrpc_tcpclient.cpp.o
+
+jsonrpc_tcpclient.i: jsonrpc_tcpclient.cpp.i
+.PHONY : jsonrpc_tcpclient.i
+
+# target to preprocess a source file
+jsonrpc_tcpclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpclient.cpp.i
+.PHONY : jsonrpc_tcpclient.cpp.i
+
+jsonrpc_tcpclient.s: jsonrpc_tcpclient.cpp.s
+.PHONY : jsonrpc_tcpclient.s
+
+# target to generate assembly for a file
+jsonrpc_tcpclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpclient.cpp.s
+.PHONY : jsonrpc_tcpclient.cpp.s
+
+jsonrpc_tcpserver.o: jsonrpc_tcpserver.cpp.o
+.PHONY : jsonrpc_tcpserver.o
+
+# target to build an object file
+jsonrpc_tcpserver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpserver.cpp.o
+.PHONY : jsonrpc_tcpserver.cpp.o
+
+jsonrpc_tcpserver.i: jsonrpc_tcpserver.cpp.i
+.PHONY : jsonrpc_tcpserver.i
+
+# target to preprocess a source file
+jsonrpc_tcpserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpserver.cpp.i
+.PHONY : jsonrpc_tcpserver.cpp.i
+
+jsonrpc_tcpserver.s: jsonrpc_tcpserver.cpp.s
+.PHONY : jsonrpc_tcpserver.s
+
+# target to generate assembly for a file
+jsonrpc_tcpserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_tcpserver.cpp.s
+.PHONY : jsonrpc_tcpserver.cpp.s
+
+jsonrpc_udpclient.o: jsonrpc_udpclient.cpp.o
+.PHONY : jsonrpc_udpclient.o
+
+# target to build an object file
+jsonrpc_udpclient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpclient.cpp.o
+.PHONY : jsonrpc_udpclient.cpp.o
+
+jsonrpc_udpclient.i: jsonrpc_udpclient.cpp.i
+.PHONY : jsonrpc_udpclient.i
+
+# target to preprocess a source file
+jsonrpc_udpclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpclient.cpp.i
+.PHONY : jsonrpc_udpclient.cpp.i
+
+jsonrpc_udpclient.s: jsonrpc_udpclient.cpp.s
+.PHONY : jsonrpc_udpclient.s
+
+# target to generate assembly for a file
+jsonrpc_udpclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpclient.cpp.s
+.PHONY : jsonrpc_udpclient.cpp.s
+
+jsonrpc_udpserver.o: jsonrpc_udpserver.cpp.o
+.PHONY : jsonrpc_udpserver.o
+
+# target to build an object file
+jsonrpc_udpserver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpserver.cpp.o
+.PHONY : jsonrpc_udpserver.cpp.o
+
+jsonrpc_udpserver.i: jsonrpc_udpserver.cpp.i
+.PHONY : jsonrpc_udpserver.i
+
+# target to preprocess a source file
+jsonrpc_udpserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpserver.cpp.i
+.PHONY : jsonrpc_udpserver.cpp.i
+
+jsonrpc_udpserver.s: jsonrpc_udpserver.cpp.s
+.PHONY : jsonrpc_udpserver.s
+
+# target to generate assembly for a file
+jsonrpc_udpserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/jsonrpc_udpserver.cpp.s
+.PHONY : jsonrpc_udpserver.cpp.s
+
+netstring.o: netstring.cpp.o
+.PHONY : netstring.o
+
+# target to build an object file
+netstring.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/netstring.cpp.o
+.PHONY : netstring.cpp.o
+
+netstring.i: netstring.cpp.i
+.PHONY : netstring.i
+
+# target to preprocess a source file
+netstring.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/netstring.cpp.i
+.PHONY : netstring.cpp.i
+
+netstring.s: netstring.cpp.s
+.PHONY : netstring.s
+
+# target to generate assembly for a file
+netstring.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/netstring.cpp.s
+.PHONY : netstring.cpp.s
+
+networking.o: networking.cpp.o
+.PHONY : networking.o
+
+# target to build an object file
+networking.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/networking.cpp.o
+.PHONY : networking.cpp.o
+
+networking.i: networking.cpp.i
+.PHONY : networking.i
+
+# target to preprocess a source file
+networking.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/networking.cpp.i
+.PHONY : networking.cpp.i
+
+networking.s: networking.cpp.s
+.PHONY : networking.s
+
+# target to generate assembly for a file
+networking.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/networking.cpp.s
+.PHONY : networking.cpp.s
+
+system.o: system.cpp.o
+.PHONY : system.o
+
+# target to build an object file
+system.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/system.cpp.o
+.PHONY : system.cpp.o
+
+system.i: system.cpp.i
+.PHONY : system.i
+
+# target to preprocess a source file
+system.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/system.cpp.i
+.PHONY : system.cpp.i
+
+system.s: system.cpp.s
+.PHONY : system.s
+
+# target to generate assembly for a file
+system.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/libs.dir/build.make CMakeFiles/libs.dir/system.cpp.s
+.PHONY : system.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +429,39 @@ help:
 	@echo "... common.o"
 	@echo "... common.i"
 	@echo "... common.s"
+	@echo "... jsonrpc_client.o"
+	@echo "... jsonrpc_client.i"
+	@echo "... jsonrpc_client.s"
+	@echo "... jsonrpc_handler.o"
+	@echo "... jsonrpc_handler.i"
+	@echo "... jsonrpc_handler.s"
+	@echo "... jsonrpc_httpclient.o"
+	@echo "... jsonrpc_httpclient.i"
+	@echo "... jsonrpc_httpclient.s"
+	@echo "... jsonrpc_server.o"
+	@echo "... jsonrpc_server.i"
+	@echo "... jsonrpc_server.s"
+	@echo "... jsonrpc_tcpclient.o"
+	@echo "... jsonrpc_tcpclient.i"
+	@echo "... jsonrpc_tcpclient.s"
+	@echo "... jsonrpc_tcpserver.o"
+	@echo "... jsonrpc_tcpserver.i"
+	@echo "... jsonrpc_tcpserver.s"
+	@echo "... jsonrpc_udpclient.o"
+	@echo "... jsonrpc_udpclient.i"
+	@echo "... jsonrpc_udpclient.s"
+	@echo "... jsonrpc_udpserver.o"
+	@echo "... jsonrpc_udpserver.i"
+	@echo "... jsonrpc_udpserver.s"
+	@echo "... netstring.o"
+	@echo "... netstring.i"
+	@echo "... netstring.s"
+	@echo "... networking.o"
+	@echo "... networking.i"
+	@echo "... networking.s"
+	@echo "... system.o"
+	@echo "... system.i"
+	@echo "... system.s"
 .PHONY : help
 
 

@@ -231,4 +231,25 @@ CMakeFiles/libs.dir/common.cpp.o: /home/zyd/wksp/test/CnS/libs/common.cpp \
  /usr/include/c++/9/bits/istream.tcc /usr/include/c++/9/mutex \
  /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h \
- /usr/include/c++/9/condition_variable
+ /usr/include/c++/9/condition_variable \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc.h \
+ /usr/include/json/json.h /usr/include/json/autolink.h \
+ /usr/include/json/config.h /usr/include/json/version.h \
+ /usr/include/json/value.h /usr/include/json/forwards.h \
+ /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
+ /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
+ /usr/include/c++/9/bits/erase_if.h /usr/include/json/reader.h \
+ /usr/include/json/features.h /usr/include/c++/9/stack \
+ /usr/include/c++/9/bits/stl_stack.h /usr/include/json/writer.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_common.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_handler.h \
+ /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
+ /usr/include/c++/9/bits/list.tcc \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_server.h \
+ /home/zyd/wksp/test/CnS/libs/../include/networking.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_udpserver.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_tcpserver.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_client.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_udpclient.h \
+ /home/zyd/wksp/test/CnS/libs/../include/jsonrpc_tcpclient.h \
+ /home/zyd/wksp/test/CnS/libs/../include/netstring.h

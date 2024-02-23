@@ -22,6 +22,9 @@
 #include<condition_variable>    //to control threads.
 #include<vector>
 
+#include"jsonrpc.h"
+#include"jsonrpc_server.h"
+
 #define SERVER_PORT 8989  //serverports; standard HTTP prot 80
 #define BUFSIZE 4096    //size of the buffer
 #define SOCKETERROR (-1)
@@ -44,3 +47,28 @@ extern std::condition_variable cv;//global condition variable. C++
 
 int setup_server(short port, int backlog);  
 int accept_new_connection(int server_socket);
+
+class zyd{
+    public:
+        bool Print(const Json::Value& root, Json::Value& response)     //reply with success
+        {    std::cout<< "Receive query: "<< root << std::endl;
+            response["jsonrpc"] = "2.0";
+            response["id"] = root["id"];
+            response["result"] = "success";
+            return true;
+        }
+        bool Notify(const Json::Value& root, Json::Value& response)    //notification
+        {
+            std::cout<<"Notification: "<<root<<std::endl;
+            response = Json::Value::null;
+            return true;
+        }
+        bool ReadF(const Json::Value& root, Json::Value& response)       //read file
+        {
+            std::cout<<"Receive query: "<< root << std::endl;       //query from client. json format, client has to be this format then send it to server.
+
+            //respond to the query
+            response[]
+
+        }
+};

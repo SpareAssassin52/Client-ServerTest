@@ -3,7 +3,20 @@ project(libs)
 
 include_directories(${CMAKE_SOURCE_DIR}/../include)
 
-add_library(${PROJECT_NAME} SHARED common.cpp)
+add_library(${PROJECT_NAME} SHARED 
+common.cpp
+system.cpp
+netstring.cpp
+networking.cpp
+jsonrpc_client.cpp
+jsonrpc_handler.cpp
+jsonrpc_httpclient.cpp
+jsonrpc_server.cpp
+jsonrpc_tcpclient.cpp
+jsonrpc_tcpserver.cpp
+jsonrpc_udpclient.cpp
+jsonrpc_udpserver.cpp
+)
 
 
 #[==[ remember to use "make" after using "cmake -S .. -B." ]==]

@@ -1,7 +1,11 @@
 #include "../include/common.h"
+
 std::queue<int*> qclient_socket;
 std::mutex mtx;
 std::condition_variable cv;
+
+Json::Rpc::Handler m_jsonHandler;
+zyd classzyd;
 
 void err_n_die(const char *fmt, ...){
     int errno_save;
@@ -52,6 +56,12 @@ char *bin2hex(const unsigned char *input, size_t len){
 }
 
 int setup_server(short port, int backlog){
+    //add method
+    m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::Print, std::string("print")));
+    m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::Notify, std::string("notify")));
+    m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::ReadF, std::string("readfile")));
+    //~sadd method
+
     int server_socket, client_socket, addr_size;
     struct sockaddr_in server_addr;  //, client_addr;
 
@@ -109,6 +119,8 @@ void *handle_connection(int client_socket){
     int msgsize = 0;
     char actualpath[PATH_MAX+1];
 
+    
+
     //read the client's message -- the name of the file to read
     while((bytes_read = read(client_socket, buffer+msgsize, sizeof(buffer)+msgsize-1)) > 0){
         msgsize += bytes_read;
@@ -136,15 +148,15 @@ void *handle_connection(int client_socket){
         close(client_socket);
         return NULL;  
     }
-    //sleep(1); //to demonstrate that thread is really helpful and can be relatively faster.
+
     //this is a fine example program, but rather insecure.
     //a real program should limit the client to certain files.
     while((bytes_read = fread(buffer, 1, BUFSIZE, fp)) > 0){
         printf("sending %zu bytes\n", bytes_read);
         write(client_socket, buffer, bytes_read);
     }
-    close(client_socket);
     fclose(fp);
+    close(client_socket);
     printf("closing connection\n");
     fflush(stdout);
 
