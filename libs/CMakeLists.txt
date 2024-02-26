@@ -17,6 +17,11 @@ jsonrpc_tcpserver.cpp
 jsonrpc_udpclient.cpp
 jsonrpc_udpserver.cpp
 )
+set(THREADS_PREFER_PTHREAD_FLAG ON) #set thread flag on
+find_package(Threads REQUIRED)      #find threads package
+target_link_libraries(${PROJECT_NAME} Threads::Threads)  #add pthread.h to the library
 
+find_package(jsoncpp REQUIRED)
+target_link_libraries(${PROJECT_NAME} jsoncpp)
 
 #[==[ remember to use "make" after using "cmake -S .. -B." ]==]

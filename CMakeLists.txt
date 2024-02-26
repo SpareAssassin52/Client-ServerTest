@@ -19,3 +19,7 @@ target_link_libraries(tcpMultiserver libs)
 set(THREADS_PREFER_PTHREAD_FLAG ON) #set thread flag on
 find_package(Threads REQUIRED)      #find threads package
 target_link_libraries(tcpMultiserver Threads::Threads)  #add pthread.h to the library
+
+find_package(jsoncpp REQUIRED)
+target_link_libraries(tcpMultiserver jsoncpp)
+

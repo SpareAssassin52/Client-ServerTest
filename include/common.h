@@ -22,6 +22,7 @@
 #include<condition_variable>    //to control threads.
 #include<vector>
 
+
 #include"jsonrpc.h"
 #include"jsonrpc_server.h"
 
@@ -66,9 +67,64 @@ class zyd{
         bool ReadF(const Json::Value& root, Json::Value& response)       //read file
         {
             std::cout<<"Receive query: "<< root << std::endl;       //query from client. json format, client has to be this format then send it to server.
-
+            
             //respond to the query
-            response[]
+            response["jsonrpc"] = "2.0";
+            response["id"] = root["id"];
+
+
+            char bufferparas[BUFSIZE];
+            char actualpath[PATH_MAX+1];
+            //size_t requestsize;
+
+            memset(bufferparas,0, BUFSIZE);
+            memset(actualpath,0, PATH_MAX+1);
+            
+            if(root.isMember("params")){
+                if(root["params"].isMember("path")){
+                    strncpy(bufferparas, root["params"]["path"].asCString(), BUFSIZE - 1);
+                    //requestsize = strlen(root["params"]["path"].asCString());
+                }
+            }else{
+                std::cout<<std::endl<< "invalid parameters: there is no path" << std::endl;
+                return false;
+            }
+
+
+            printf("REQUEST: %s\n", bufferparas);
+            fflush(stdout);
+
+            
+            //validity check
+            if(realpath(bufferparas, actualpath) == NULL){   //realpath() can convert any relative path into absolute path which is stored into resolved.
+                std::cout<< std::endl<<errno<< strerror(errno)<<std::endl;
+                printf("ERROR(bad path): %s\n", bufferparas);
+                //close(client_socket);
+                return false;
+            }
+
+            //read file contents and send its contents to client
+            FILE *fp = fopen(actualpath, "r");
+            if(fp == NULL){
+                printf("ERROR(open): %s\n", bufferparas);
+                //close(client_socket);
+                return false;  
+            }
+
+            long unsigned int bytes_read;
+            //insecure.
+            //a real program should limit the client to certain files.
+            while((bytes_read = fread(bufferparas, 1, BUFSIZE, fp)) > 0){
+                printf("sending %zu bytes\n", bytes_read);
+                //write(client_socket, bufferparas, bytes_read);            //instead of write, I uses response[] to send back message.
+                response["content"].append(bufferparas);
+            }
+            fclose(fp);
+            //close(client_socket);
+            
+            fflush(stdout);
+
+            return true;
 
         }
 };

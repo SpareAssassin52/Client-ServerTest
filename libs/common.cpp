@@ -60,7 +60,7 @@ int setup_server(short port, int backlog){
     m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::Print, std::string("print")));
     m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::Notify, std::string("notify")));
     m_jsonHandler.AddMethod(new Json::Rpc::RpcMethod<zyd>(classzyd, &zyd::ReadF, std::string("readfile")));
-    //~sadd method
+    //~add method
 
     int server_socket, client_socket, addr_size;
     struct sockaddr_in server_addr;  //, client_addr;
@@ -117,20 +117,56 @@ void *handle_connection(int client_socket){
     char buffer[BUFSIZE]; 
     size_t bytes_read;
     int msgsize = 0;
-    char actualpath[PATH_MAX+1];
-
     
 
-    //read the client's message -- the name of the file to read
-    while((bytes_read = read(client_socket, buffer+msgsize, sizeof(buffer)+msgsize-1)) > 0){
-        msgsize += bytes_read;
-        if(msgsize < 0||msgsize > BUFSIZE-1 || (buffer[msgsize-4]=='\r' && buffer[msgsize-3]=='\n' && buffer[msgsize-2]=='\r' && buffer[msgsize-1]=='\n'))  //msgsize < 0 because byte_read can be really huge that it overflowed, which makes it become negative.
-        break;  //buffer overflow or end of file.
+    Json::Value response;
+    ssize_t numb = -1;      //number of received data;
+
+    numb = recv(client_socket, buffer, BUFSIZE, 0);
+    if(numb > 0){
+        std::string msg = std::string(buffer, numb);        //convert char[] into string.
+
+        if(Json::Rpc::RAW==Json::Rpc::NETSTRING)        //format of code? 
+        {
+            try{
+            msg = netstring::decode(msg);       
+            }
+            catch(const netstring::NetstringException &e){
+                std::cerr<< e.what() << std::endl;
+                return NULL;
+            }
+        }
+
+        m_jsonHandler.Process(msg, response);           //processing and then parsing the result into jsonRPC format
+
+        //start encoding the response then send it back to client.
+        //in case of notification message received, the response could be Json::Value::null
+        if(response != Json::Value::null){
+            std::string rep = m_jsonHandler.GetString(response);
+            if(Json::Rpc::RAW==Json::Rpc::NETSTRING){
+                rep=netstring::encode(rep); 
+            }
+
+            size_t bytesTOSend = rep.length();
+            const char* ptrBuffer = rep.c_str();        //?
+            do{
+                int retVal = send(client_socket, ptrBuffer, bytesTOSend, 0);
+                if(retVal == -1)
+                {       //error
+                    std::cerr << "Error while sending data: "<< strerror(errno) << std::endl;
+                    return NULL;
+                }
+                bytesTOSend -= retVal;
+                ptrBuffer += retVal;
+            }while(bytesTOSend > 0);
+
+        }
+
 
     }
-    check(bytes_read, "recv error");
-    buffer[msgsize-1] = 0, buffer[msgsize-2] = 0, buffer[msgsize-3] = 0, buffer[msgsize-4] = 0;  //null terminate the message and remove the \n
 
+
+    /*      move to the class zyd as a method in jsonrpc.
     printf("REQUEST: %s\n", buffer);
     fflush(stdout);
 
@@ -158,7 +194,7 @@ void *handle_connection(int client_socket){
     fclose(fp);
     close(client_socket);
     printf("closing connection\n");
-    fflush(stdout);
+    fflush(stdout);*/
 
     return NULL;
 }

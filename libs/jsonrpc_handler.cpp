@@ -165,14 +165,7 @@ namespace Json
         CallbackMethod* rpc = Lookup(method);
         if(rpc)
         {
-          
-          {//testzyd valid data!///insert test here because the data is valid by passing the check()////////////////////////////////////////////////////////////////
-            std::string s = root["id"].asString();
-            Zyd::zyd test;
-            test.funcMap(test.theMap[s]);
-          }
-
-          return rpc->Call(root, response); //get receiveMessage in terminal
+          return rpc->Call(root, response); //process the method
         }
       }
       

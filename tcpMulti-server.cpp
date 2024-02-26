@@ -36,6 +36,7 @@ int main(int argc, char **argv){
                 else{       //i == client_socket; means that SELECT told us client_socket is readable and needs further process.
                     //sleep(500);
                     handle_connection(i);
+                    printf("closing connection\n");
                     FD_CLR(i, &current_sockets);        //once client's request is over, just move its FD out of the current FD_SET.
                 }
             }
@@ -44,3 +45,10 @@ int main(int argc, char **argv){
     
     return 0;
 }
+
+
+
+/*
+{"id":1,"jsonrpc":"2.0","method":"print","params":"a"}
+{"id":1,"jsonrpc":"2.0","method":"readfile","params":{"path":"/home/zyd/Documents/tst.txt"}}
+*/

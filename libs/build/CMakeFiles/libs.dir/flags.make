@@ -6,5 +6,5 @@ CXX_DEFINES = -Dlibs_EXPORTS
 
 CXX_INCLUDES = -I/home/zyd/wksp/test/CnS/libs/../include
 
-CXX_FLAGS = -fPIC
+CXX_FLAGS = -fPIC -pthread
 

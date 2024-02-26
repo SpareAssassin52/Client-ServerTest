@@ -47,7 +47,7 @@ reconnect:
     //connected, preparing the message.
     //sprintf(sendline, "GET / HTTP/1.1\r\n\r\n");    //write formatted data into sendline. \r\n\r\n means that it is the end of the message.
     
-    sprintf(sendline, "%s\r\n\r\n",argv[2]);
+    sprintf(sendline, "%s",argv[2]);
 
     
     //Send the request -- making sure you send it all
