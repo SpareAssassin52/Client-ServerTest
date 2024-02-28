@@ -13,11 +13,14 @@
 			"add_executable",
 			"target_link_directories",
 			"target_link_libraries",
+			"set_property",
+			"find_package",
 			"include_directories"
 		],
 		"files" : 
 		[
-			"CMakeLists.txt"
+			"CMakeLists.txt",
+			"/home/zyd/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.28/Modules/FindThreads.cmake"
 		],
 		"nodes" : 
 		[
@@ -43,7 +46,35 @@
 				"parent" : 0
 			},
 			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 5
+			},
+			{
 				"command" : 3,
+				"file" : 1,
+				"line" : 238,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
 				"file" : 0,
 				"line" : 9,
 				"parent" : 0
@@ -57,12 +88,16 @@
 			[
 				{
 					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-pthread"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 9,
 					"path" : "/home/zyd/wksp/test/CnS/include"
 				}
 			],
@@ -99,6 +134,16 @@
 			{
 				"backtrace" : 3,
 				"fragment" : "-llibs",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-ljsoncpp",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-pthread",
 				"role" : "libraries"
 			}
 		],

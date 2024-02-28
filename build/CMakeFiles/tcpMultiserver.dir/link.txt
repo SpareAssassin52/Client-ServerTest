@@ -1,1 +1,1 @@
-/usr/bin/g++ -g "CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.o" CMakeFiles/tcpMultiserver.dir/libs/common.cpp.o -o tcpMultiserver   -L/home/zyd/wksp/test/CnS/libs/build  -Wl,-rpath,/home/zyd/wksp/test/CnS/libs/build -llibs 
+/usr/bin/g++ -g "CMakeFiles/tcpMultiserver.dir/tcpMulti-server.cpp.o" CMakeFiles/tcpMultiserver.dir/libs/common.cpp.o -o tcpMultiserver   -L/home/zyd/wksp/test/CnS/libs/build  -Wl,-rpath,/home/zyd/wksp/test/CnS/libs/build -llibs -ljsoncpp -pthread 

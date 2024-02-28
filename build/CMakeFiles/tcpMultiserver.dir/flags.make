@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/zyd/wksp/test/CnS/include
 
-CXX_FLAGS = -g
+CXX_FLAGS = -g -pthread
 
